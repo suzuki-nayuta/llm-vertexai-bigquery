@@ -58,7 +58,8 @@ def generate_sentiment_analysis_query():
     create_bq_model_query = f"""
         CREATE OR REPLACE TABLE `{PROJECT_ID}.{BQ_DATASET}.{SENTIMENT_ANALYSIS_RESULT_TABLE}`
         AS SELECT
-          ml_generate_text_llm_result AS sentiment,
+          -- 空白発生時の除去のために入れておく。
+          TRIM(ml_generate_text_llm_result) AS sentiment,
           review_id,
           content
         FROM

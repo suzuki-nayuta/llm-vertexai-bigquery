@@ -8,6 +8,8 @@ CREATE OR REPLACE TABLE llm_sample.user_review (
 
 -- DDLではないが分けると紛らわしいのでこちらに合わせて記載する。
 -- テキストはVertex AIよりtext-bison@002で作成した。
+-- user_idはPythonでUUIDを生成した。
+-- review_timestampはPythonで適当な時間を生成したが、一部ユースケースが分かりやすいように調整した。
 INSERT INTO llm_sample.user_review (content, review_id, user_id, review_timestamp) VALUES 
 ('部屋は清潔で広く、快適でした。', 1, '09965d5f-98c9-4b75-bf2f-3163899e10c7', '2023-10-31 00:25:43'),
 ('スタッフはフレンドリーで、親切でした。', 2, 'c1f15d84-ceb0-4dd9-8bb7-a832cb34f6bf', '2023-08-26 22:26:30'),

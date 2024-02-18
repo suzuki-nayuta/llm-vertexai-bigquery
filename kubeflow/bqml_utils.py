@@ -39,7 +39,7 @@ def generate_create_embedding_query():
             user_id,
             content,
             review_timestamp,
-            text_embedding as embedding,
+            text_embedding AS embedding,
             review_id
         FROM ML.GENERATE_TEXT_EMBEDDING(
           MODEL `{BQ_DATASET}.{EMBEDDED_MODEL_NAME}`,

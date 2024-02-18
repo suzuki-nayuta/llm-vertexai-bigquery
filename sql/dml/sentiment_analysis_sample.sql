@@ -1,5 +1,6 @@
 SELECT
-  ml_generate_text_llm_result,
+  -- 空白発生時の除去のために入れておく。
+  TRIM(ml_generate_text_llm_result) AS sentiment,
   CAST(JSON_EXTRACT_SCALAR(ml_generate_text_rai_result, '$.blocked') AS BOOL) AS is_safety_filter_blocked,
   * EXCEPT (ml_generate_text_llm_result,
     ml_generate_text_rai_result)
@@ -9,7 +10,7 @@ FROM
     SELECT
       -- プロンプトは以下のブログ記事を参考にしました。
       -- https://blog.g-gen.co.jp/entry/using-palm2-with-bigquery-ml
-      CONCAT( 'Classify the sentiment of this review as Positive or Negative? \n Review: ', text, '\n Sentiment:' ) AS prompt,
+      CONCAT( 'Classify the sentiment of this review as Positive or Negative? \n Review: ', content, '\n Sentiment:' ) AS prompt,
       *
     FROM
       `llm_sample.user_comment_analysis`
